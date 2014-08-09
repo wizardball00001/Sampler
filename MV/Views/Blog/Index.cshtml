@@ -1,0 +1,30 @@
+﻿@model MD.BlogUser
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<script type="text/javascript">
+
+
+</script>
+<style type="text/css">
+    .width150 {
+        float:left; width:200px;
+    }
+</style>
+<h2>Index</h2>
+
+@using (Html.BeginForm("ValidateUser","Blog")) { 
+
+    <b class="width150">Username</b> @Html.TextBoxFor(m=>m.Username) <br />
+    <b class="width150">Password</b> @Html.TextBoxFor(m=>m.Password) <br />
+    
+    <input type="submit" value="Login" />
+
+}
+
+@Html.ActionLink("Show Me the Bloggers","GetAll","Blog")
+@Html.ActionLink("Create User","CreateBlogForm","Blog")
+
+

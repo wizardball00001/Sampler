@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MVCModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="MVCEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BlogDatas" EntityType="MVCModel.BlogData" />
+    <EntitySet Name="BlogUsers" EntityType="MVCModel.BlogUser" />
+    <EntitySet Name="CustomerAddresses" EntityType="MVCModel.CustomerAddress" />
+    <EntitySet Name="CustomerDatas" EntityType="MVCModel.CustomerData" />
+    <EntitySet Name="Customers" EntityType="MVCModel.Customer" />
+    <EntitySet Name="pets" EntityType="MVCModel.pet" />
+    <EntitySet Name="sysdiagrams" EntityType="MVCModel.sysdiagram" />
+    <EntitySet Name="users" EntityType="MVCModel.user" />
+    <EntitySet Name="UserAccesses" EntityType="MVCModel.UserAccess" />
+    <AssociationSet Name="FK_BlogData_BlogUser" Association="MVCModel.FK_BlogData_BlogUser">
+      <End Role="BlogUser" EntitySet="BlogUsers" />
+      <End Role="BlogData" EntitySet="BlogDatas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Customers_CustomerAddresses" Association="MVCModel.FK_Customers_CustomerAddresses">
+      <End Role="CustomerAddresses" EntitySet="CustomerAddresses" />
+      <End Role="Customers" EntitySet="Customers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Customers_CustomerAddresses1" Association="MVCModel.FK_Customers_CustomerAddresses1">
+      <End Role="CustomerAddresses" EntitySet="CustomerAddresses" />
+      <End Role="Customers" EntitySet="Customers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Customer_ToCustomerData" Association="MVCModel.FK_Customer_ToCustomerData">
+      <End Role="CustomerDatas" EntitySet="CustomerDatas" />
+      <End Role="Customers" EntitySet="Customers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_pet_user" Association="MVCModel.FK_pet_user">
+      <End Role="user" EntitySet="users" />
+      <End Role="pet" EntitySet="pets" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="BlogData">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="BlogID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BlogGroup" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="BlogMessage" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="BlogDate" Type="DateTime" Precision="3" />
+    <Property Name="BlogID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="BlogUser" Relationship="MVCModel.FK_BlogData_BlogUser" FromRole="BlogData" ToRole="BlogUser" />
+  </EntityType>
+  <EntityType Name="BlogUser">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Role" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Enabled" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="BlogDatas" Relationship="MVCModel.FK_BlogData_BlogUser" FromRole="BlogUser" ToRole="BlogData" />
+  </EntityType>
+  <EntityType Name="CustomerAddress">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="address1" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="city" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="state" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="zip" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Customers" Relationship="MVCModel.FK_Customers_CustomerAddresses" FromRole="CustomerAddresses" ToRole="Customers" />
+    <NavigationProperty Name="Customers1" Relationship="MVCModel.FK_Customers_CustomerAddresses1" FromRole="CustomerAddresses" ToRole="Customers" />
+  </EntityType>
+  <EntityType Name="CustomerData">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Petname" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="category" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Customers" Relationship="MVCModel.FK_Customer_ToCustomerData" FromRole="CustomerDatas" ToRole="Customers" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="custCode" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="fname" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="lname" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="petID" Type="Int32" />
+    <Property Name="billID" Type="Int32" />
+    <Property Name="shipID" Type="Int32" />
+    <NavigationProperty Name="CustomerAddress" Relationship="MVCModel.FK_Customers_CustomerAddresses" FromRole="Customers" ToRole="CustomerAddresses" />
+    <NavigationProperty Name="CustomerAddress1" Relationship="MVCModel.FK_Customers_CustomerAddresses1" FromRole="Customers" ToRole="CustomerAddresses" />
+    <NavigationProperty Name="CustomerData" Relationship="MVCModel.FK_Customer_ToCustomerData" FromRole="Customers" ToRole="CustomerDatas" />
+  </EntityType>
+  <EntityType Name="pet">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userid" Type="Int32" />
+    <Property Name="petname" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="specie" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="sex" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="age" Type="Int32" />
+    <NavigationProperty Name="user" Relationship="MVCModel.FK_pet_user" FromRole="pet" ToRole="user" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="address" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="pets" Relationship="MVCModel.FK_pet_user" FromRole="user" ToRole="pet" />
+  </EntityType>
+  <EntityType Name="UserAccess">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="password" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="enabled" Type="Boolean" />
+  </EntityType>
+  <Association Name="FK_BlogData_BlogUser">
+    <End Role="BlogUser" Type="MVCModel.BlogUser" Multiplicity="1" />
+    <End Role="BlogData" Type="MVCModel.BlogData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BlogUser">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BlogData">
+        <PropertyRef Name="BlogID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Customers_CustomerAddresses">
+    <End Role="CustomerAddresses" Type="MVCModel.CustomerAddress" Multiplicity="0..1" />
+    <End Role="Customers" Type="MVCModel.Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerAddresses">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Customers">
+        <PropertyRef Name="billID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Customers_CustomerAddresses1">
+    <End Role="CustomerAddresses" Type="MVCModel.CustomerAddress" Multiplicity="0..1" />
+    <End Role="Customers" Type="MVCModel.Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerAddresses">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Customers">
+        <PropertyRef Name="shipID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Customer_ToCustomerData">
+    <End Role="CustomerDatas" Type="MVCModel.CustomerData" Multiplicity="0..1" />
+    <End Role="Customers" Type="MVCModel.Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerDatas">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Customers">
+        <PropertyRef Name="petID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_pet_user">
+    <End Role="user" Type="MVCModel.user" Multiplicity="0..1" />
+    <End Role="pet" Type="MVCModel.pet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="pet">
+        <PropertyRef Name="userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

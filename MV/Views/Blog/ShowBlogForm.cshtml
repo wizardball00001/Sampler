@@ -1,0 +1,58 @@
+﻿@model MD.BlogData
+
+@{
+    ViewBag.Title = "ShowBlogForm";
+}
+
+<h2>ShowBlogForm</h2>
+
+@using (Html.BeginForm("AddBlog", "Blog"))
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>BlogData</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BlogGroup)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BlogGroup)
+            @Html.ValidationMessageFor(model => model.BlogGroup)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BlogMessage)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BlogMessage)
+            @Html.ValidationMessageFor(model => model.BlogMessage)
+        </div>
+
+@*        <div class="editor-label">
+            @Html.LabelFor(model => model.BlogDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BlogDate)
+            @Html.ValidationMessageFor(model => model.BlogDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BlogID)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.BlogID)
+            @Html.ValidationMessageFor(model => model.BlogID)
+        </div>*@
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+

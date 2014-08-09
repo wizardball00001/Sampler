@@ -1,0 +1,56 @@
+﻿@model MD.BlogUser
+
+@{
+    ViewBag.Title = "CreateBlogForm";
+}
+
+<h2>CreateBlogForm</h2>
+
+@using (Html.BeginForm("CreateBlogger","Blog")) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>BlogUser</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Username)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Username)
+            @Html.ValidationMessageFor(model => model.Username)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Password)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Password)
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Role)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Role)
+            @Html.ValidationMessageFor(model => model.Role)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Enabled)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Enabled)
+            @Html.ValidationMessageFor(model => model.Enabled)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+

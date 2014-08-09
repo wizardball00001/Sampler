@@ -1,0 +1,8 @@
+C:\!svn\vs2012\MV\MD\bin\Debug\MD.dll.config
+C:\!svn\vs2012\MV\MD\bin\Debug\MD.dll
+C:\!svn\vs2012\MV\MD\bin\Debug\MD.pdb
+C:\!svn\vs2012\MV\MD\bin\Debug\EntityFramework.dll
+C:\!svn\vs2012\MV\MD\bin\Debug\EntityFramework.xml
+C:\!svn\vs2012\MV\MD\obj\Debug\MD.csprojResolveAssemblyReference.cache
+C:\!svn\vs2012\MV\MD\obj\Debug\MD.dll
+C:\!svn\vs2012\MV\MD\obj\Debug\MD.pdb

@@ -1,0 +1,10 @@
+C:\!svn\vs2012\MV\MO\bin\Debug\MO.dll.config
+C:\!svn\vs2012\MV\MO\bin\Debug\MO.dll
+C:\!svn\vs2012\MV\MO\bin\Debug\MO.pdb
+C:\!svn\vs2012\MV\MO\bin\Debug\EntityFramework.dll
+C:\!svn\vs2012\MV\MO\bin\Debug\MD.dll
+C:\!svn\vs2012\MV\MO\bin\Debug\MD.pdb
+C:\!svn\vs2012\MV\MO\bin\Debug\EntityFramework.xml
+C:\!svn\vs2012\MV\MO\obj\Debug\MO.csprojResolveAssemblyReference.cache
+C:\!svn\vs2012\MV\MO\obj\Debug\MO.dll
+C:\!svn\vs2012\MV\MO\obj\Debug\MO.pdb

@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MVCModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="MVCModelStoreContainer">
+    <EntitySet Name="BlogData" EntityType="MVCModel.Store.BlogData" store:Type="Tables" store:Schema="dbo" store:Name="BlogData">
+      <DefiningQuery>SELECT 
+      [BlogData].[ID] AS [ID], 
+      [BlogData].[BlogGroup] AS [BlogGroup], 
+      [BlogData].[BlogMessage] AS [BlogMessage], 
+      [BlogData].[BlogDate] AS [BlogDate], 
+      [BlogData].[BlogID] AS [BlogID]
+      FROM [dbo].[BlogData] AS [BlogData]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="BlogUser" EntityType="MVCModel.Store.BlogUser" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CustomerAddresses" EntityType="MVCModel.Store.CustomerAddresses" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CustomerDatas" EntityType="MVCModel.Store.CustomerDatas" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Customers" EntityType="MVCModel.Store.Customers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="pet" EntityType="MVCModel.Store.pet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="sysdiagrams" EntityType="MVCModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="user" EntityType="MVCModel.Store.user" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserAccesses" EntityType="MVCModel.Store.UserAccesses" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_BlogData_BlogUser" Association="MVCModel.Store.FK_BlogData_BlogUser">
+      <End Role="BlogUser" EntitySet="BlogUser" />
+      <End Role="BlogData" EntitySet="BlogData" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Customer_ToCustomerData" Association="MVCModel.Store.FK_Customer_ToCustomerData">
+      <End Role="CustomerDatas" EntitySet="CustomerDatas" />
+      <End Role="Customers" EntitySet="Customers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Customers_CustomerAddresses" Association="MVCModel.Store.FK_Customers_CustomerAddresses">
+      <End Role="CustomerAddresses" EntitySet="CustomerAddresses" />
+      <End Role="Customers" EntitySet="Customers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Customers_CustomerAddresses1" Association="MVCModel.Store.FK_Customers_CustomerAddresses1">
+      <End Role="CustomerAddresses" EntitySet="CustomerAddresses" />
+      <End Role="Customers" EntitySet="Customers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_pet_user" Association="MVCModel.Store.FK_pet_user">
+      <End Role="user" EntitySet="user" />
+      <End Role="pet" EntitySet="pet" />
+    </AssociationSet>
+  </EntityContainer>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'MVC.dbo.BlogData' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="BlogData">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="BlogID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="BlogGroup" Type="varchar" MaxLength="50" />
+    <Property Name="BlogMessage" Type="varchar(max)" />
+    <Property Name="BlogDate" Type="datetime" />
+    <Property Name="BlogID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BlogUser">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Password" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Role" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Enabled" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="CustomerAddresses">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="address1" Type="varchar" MaxLength="50" />
+    <Property Name="city" Type="varchar" MaxLength="50" />
+    <Property Name="state" Type="varchar" MaxLength="50" />
+    <Property Name="zip" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="CustomerDatas">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Petname" Type="varchar" MaxLength="50" />
+    <Property Name="category" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Customers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="custCode" Type="varchar" MaxLength="50" />
+    <Property Name="fname" Type="varchar" MaxLength="50" />
+    <Property Name="lname" Type="varchar" MaxLength="50" />
+    <Property Name="petID" Type="int" />
+    <Property Name="billID" Type="int" />
+    <Property Name="shipID" Type="int" />
+  </EntityType>
+  <EntityType Name="pet">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="userid" Type="int" />
+    <Property Name="petname" Type="varchar" MaxLength="50" />
+    <Property Name="specie" Type="varchar" MaxLength="50" />
+    <Property Name="sex" Type="varchar" MaxLength="50" />
+    <Property Name="age" Type="int" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="address" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="UserAccesses">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="varchar" MaxLength="50" />
+    <Property Name="password" Type="varchar" MaxLength="50" />
+    <Property Name="enabled" Type="bit" />
+  </EntityType>
+  <Association Name="FK_BlogData_BlogUser">
+    <End Role="BlogUser" Type="MVCModel.Store.BlogUser" Multiplicity="1" />
+    <End Role="BlogData" Type="MVCModel.Store.BlogData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BlogUser">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BlogData">
+        <PropertyRef Name="BlogID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Customer_ToCustomerData">
+    <End Role="CustomerDatas" Type="MVCModel.Store.CustomerDatas" Multiplicity="0..1" />
+    <End Role="Customers" Type="MVCModel.Store.Customers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerDatas">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Customers">
+        <PropertyRef Name="petID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Customers_CustomerAddresses">
+    <End Role="CustomerAddresses" Type="MVCModel.Store.CustomerAddresses" Multiplicity="0..1" />
+    <End Role="Customers" Type="MVCModel.Store.Customers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerAddresses">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Customers">
+        <PropertyRef Name="billID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Customers_CustomerAddresses1">
+    <End Role="CustomerAddresses" Type="MVCModel.Store.CustomerAddresses" Multiplicity="0..1" />
+    <End Role="Customers" Type="MVCModel.Store.Customers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerAddresses">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Customers">
+        <PropertyRef Name="shipID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_pet_user">
+    <End Role="user" Type="MVCModel.Store.user" Multiplicity="0..1" />
+    <End Role="pet" Type="MVCModel.Store.pet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="pet">
+        <PropertyRef Name="userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
