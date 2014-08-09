@@ -17,13 +17,14 @@ namespace MV.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.Day = svc.MathCalc.DateDifference(DateTime.Now, DateTime.Now.AddDays(-4));
             return View();
         }
 
         //GetAll
         public ActionResult GetAll()
         {
-            var model = svc.BlogUser.GetAll();
+            var model = svc.BlogUserRepo.GetAll();
             return View(model);
         }
 
@@ -38,15 +39,15 @@ namespace MV.Controllers
         //CreateBlogger
         public ActionResult CreateBlogger(MD.BlogUser model)
         {
-            svc.BlogUser.Add(model);
-            svc.BlogUser.SaveTheChanges();
+            svc.BlogUserRepo.Add(model);
+            svc.BlogUserRepo.SaveTheChanges();
             return View("Index");
         }
 
         //ValidateUser
         public ActionResult ValidateUser(MD.BlogUser model)
         {
-            var blogger = svc.BlogUser.GetBlogger(model.Username, model.Password);
+            var blogger = svc.BlogUserRepo.GetBlogger(model.Username, model.Password);
             if (blogger == null)
             {
                return RedirectToAction("Index");
@@ -70,7 +71,7 @@ namespace MV.Controllers
         {
             model.BlogID = Convert.ToInt16(Session["bloggerID"]);
             model.BlogDate = DateTime.UtcNow;
-            model.BlogUser = svc.BlogUser.GetByID(model.BlogID);
+            model.BlogUser = svc.BlogUserRepo.GetByID(model.BlogID);
 
             svc.BlogData.Add(model);
 

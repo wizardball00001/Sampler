@@ -47,16 +47,17 @@
   <ItemGroup>
     <Compile Include="BaseSvc.cs" />
     <Compile Include="Blog\BlogDataRepo.cs" />
-    <Compile Include="Blog\BlogSvc.cs" />
+    <Compile Include="BlogSvc.cs" />
     <Compile Include="Blog\BlogUserRepo.cs" />
     <Compile Include="Blog\I_BlogDataRepo.cs" />
-    <Compile Include="IClass1.cs" />
-    <Compile Include="IUserRepo.cs" />
+    <Compile Include="I_Math.cs" />
     <Compile Include="Blog\I_BaseRepo.cs" />
     <Compile Include="Blog\I_BlogUserRepo.cs" />
-    <Compile Include="I_UserRepo.cs" />
+    <Compile Include="Math\I_MathCalc.cs" />
+    <Compile Include="User\I_UserRepo.cs" />
+    <Compile Include="Math\MathCalc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserRepo.cs" />
+    <Compile Include="User\UserRepo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

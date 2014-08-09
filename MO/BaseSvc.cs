@@ -9,10 +9,18 @@ namespace MO
     {
 
         public UserRepo BusRepo;
+        public I_UserRepo UserRepo;
+        public I_BlogDataRepo BlogDataRepo;
+        public I_MathCalc MathCalc;
+
 
         public BaseSvc() {
 
             BusRepo = new UserRepo();
+            UserRepo = new UserRepo();
+            BlogDataRepo = new BlogDataRepo();
+            MathCalc = new MathCalc();
+
 
         }
 
